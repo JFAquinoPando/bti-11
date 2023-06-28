@@ -1,7 +1,12 @@
-body{
+body {
     padding: 0px;
     margin: 0;
+}
 
+*::after,
+*::before {
+    padding: 0px;
+    margin: 0;
 }
 
 .contenedor {
@@ -9,8 +14,10 @@ body{
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-rows: 60px repeat(3, 1fr) */ /* repeat(4, 1fr) */;
-    grid-template-areas: 
+    /* grid-template-rows: 60px repeat(3, 1fr) */
+    /* repeat(4, 1fr) */
+    ;
+    grid-template-areas:
         "area1 area1 area2"
         "area3 area3 area2"
         "area3 area3 area2"
@@ -46,9 +53,9 @@ body{
 }
 
 ul {
-	list-style: none;
-	display: flex;
-	gap: 32px;
+    list-style: none;
+    display: flex;
+    gap: 32px;
 }
 
 img {
@@ -60,39 +67,84 @@ input#menu {
 }
 
 .grilla {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, min(100%,200px));
-	gap: 32px;
-	/* align-content: center; */
-	/* align-items: center; */
-	justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(100%, 200px));
+    gap: 32px;
+    /* align-content: center; */
+    /* align-items: center; */
+    justify-content: center;
 }
 
 .grilla img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .grilla div {
-	/* margin: 0 auto; */
-	/* width: 100%; */
-	text-align: center;
+    /* margin: 0 auto; */
+    /* width: 100%; */
+    text-align: center;
 }
+
+figure {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    height: 304px;
+}
+
+figure::before {
+    content: "";
+    display: grid;
+    background-image: linear-gradient(to top,transparent, rgba(128, 128, 128, 0.616));
+    transform: translateY(0);
+    position: absolute;
+    inset: 0;
+    height: 99%;
+}
+
+figure:hover::after {
+    transform: translateY(0);
+}
+
+figure::after {
+    content: attr(alt);
+    display: grid;
+    inset: 0;
+    position: absolute;
+    background: #ff0000a6;
+    color: white;
+    font-size: 2rem;
+    place-content: center;
+    transform: translateY(100%);
+    cursor: pointer;
+    transition: transform .3s;
+    height: 99%;
+}
+
+figure img::after {
+    content: attr(alt);
+    display: block;
+    /* Estilos adicionales aquí */
+}
+
 
 @media screen and (max-width:768px) {
 
-    .ele1{
+    .ele1 {
         display: block;
         gap: 0;
-        height: 50px;
+        /*  height: 50px; */
     }
+
     /* "area2 area2 area2" */
-    .contenedor{
-        grid-template-areas: 
-        "area1 area1 area1"
-        "area3 area3 area3"
-        "area3 area3 area3"
-        'area4 area4 area4';
+    .contenedor {
+        grid-template-areas:
+            "area1 area1 area1"
+            "area3 area3 area3"
+            "area3 area3 area3"
+            'area4 area4 area4';
         gap: 0px;
     }
 
@@ -102,12 +154,25 @@ input#menu {
         object-fit: contain;
     }
 
-    .ele1:has(#menu:checked){
+    /* .ele1:has(#menu:checked){
         grid-template-rows: 120px repeat(3, 1fr);
         height: 103px;
+    } */
+
+    #menu+nav {
+        display: none;
     }
 
-    
+    #menu:checked+nav {
+        display: block;
+    }
+
+    #menu:not(:checked)+nav {
+        display: none;
+    }
+
+
+
 
     input#menu {
         position: absolute;
