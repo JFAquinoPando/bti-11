@@ -91,7 +91,7 @@ figure {
     padding: 0;
     position: relative;
     overflow: hidden;
-    height: 304px;
+    height: 300px;
 }
 
 figure::before {
@@ -101,10 +101,11 @@ figure::before {
     transform: translateY(0);
     position: absolute;
     inset: 0;
-    height: 99%;
+    /* height: 300px; */
 }
 
-figure:hover::after {
+figure:hover::after,
+figure:active::after {
     transform: translateY(0);
 }
 
@@ -119,8 +120,8 @@ figure::after {
     place-content: center;
     transform: translateY(100%);
     cursor: pointer;
-    transition: transform .3s;
-    height: 99%;
+    transition: transform .2s;
+    /* height: 300px; */
 }
 
 figure img::after {
